@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/The First AI/The First AI.unity
+  isLoaded: 1
+  isActive: 1
