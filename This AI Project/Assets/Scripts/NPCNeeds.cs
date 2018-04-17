@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class NPCNeeds : MonoBehaviour {
 
     public GameObject statUI;
-    public bool uiOn;
+    public bool uiOn = false;
 
     // Maximum Stats
     public float maxHunger;
@@ -52,9 +52,9 @@ public class NPCNeeds : MonoBehaviour {
         playerJ.fillAmount = playerJoy / maxJoy;
         playerB.fillAmount = playerBladder / maxBladder;
 
-        //If the user clicks anywhere with the left mouse button the UI is turned off
-        if (Input.GetButtonDown("Fire1") && uiOn == true)
+        if (Input.GetButtonDown("Cancel") && uiOn == true)
         {
+            uiOn = false;
             statUI.SetActive(false);
         }
     }
@@ -87,7 +87,7 @@ public class NPCNeeds : MonoBehaviour {
         StartCoroutine(Bladder());
     }
 
-    public void OnMouseEnter()
+    public void OnMouseDown()
     {
         //If the mouse cursor enters the NPC the UI is turned on
         uiOn = true;

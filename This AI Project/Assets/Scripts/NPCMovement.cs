@@ -15,7 +15,7 @@ public class NPCMovement : MonoBehaviour {
 
     NavMeshAgent navMeshAgent;
 
-	void Start ()
+    void Start()
     {
         navMeshAgent = this.GetComponent<NavMeshAgent>();
 
@@ -30,7 +30,7 @@ public class NPCMovement : MonoBehaviour {
             SetDestination();
             //If the game finds the NavMashAgent, it will call this function.
         }
-	}
+    }
 
     public void Update()
     {
@@ -54,42 +54,47 @@ public class NPCMovement : MonoBehaviour {
         {
             GoToilet();
         }
+
+        if (npcNeeds.playerBladder <= 10)
+        {
+            GoToilet();
+        }
+
     }
 
+        public void SetDestination()
+        {
+            //Tell the NPC/Player where to go at when this function is called
+            Vector3 targetVector = destination.transform.position;
+            navMeshAgent.SetDestination(targetVector);
+        }
 
-    public void SetDestination()
-    {
-        //Tell the NPC/Player where to go at when this function is called
-        Vector3 targetVector = destination.transform.position;
-        navMeshAgent.SetDestination(targetVector);
-	}
+        void GetFood()
+        {
+            //If this function is called from the Update Function, the NPC/Player will search this new target
+            Vector3 targetVector = getFood.transform.position;
+            navMeshAgent.SetDestination(targetVector);
+            print("Food");
+        }
 
-    void GetFood()
-    {
-        //If this function is called from the Update Function, the NPC/Player will search this new target
-        Vector3 targetVector = getFood.transform.position;
-        navMeshAgent.SetDestination(targetVector);
-        print("Food");
-    }
+        void GetDrink()
+        {
+            Vector3 targetVector = getDrink.transform.position;
+            navMeshAgent.SetDestination(targetVector);
+            print("Drink");
+        }
 
-    void GetDrink()
-    {
-        Vector3 targetVector = getDrink.transform.position;
-        navMeshAgent.SetDestination(targetVector);
-        print("Drink");
-    }
+        void GetJoy()
+        {
+            Vector3 targetVector = getJoy.transform.position;
+            navMeshAgent.SetDestination(targetVector);
+            print("Joy");
+        }
 
-    void GetJoy()
-    {
-        Vector3 targetVector = getJoy.transform.position;
-        navMeshAgent.SetDestination(targetVector);
-        print("Joy");
-    }
-
-    void GoToilet()
-    {
-        Vector3 targetVector = goToilet.transform.position;
-        navMeshAgent.SetDestination(targetVector);
-        print("Toilet");
-    }
+        void GoToilet()
+        {
+            Vector3 targetVector = goToilet.transform.position;
+            navMeshAgent.SetDestination(targetVector);
+            print("Toilet");
+        }
 }
